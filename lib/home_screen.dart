@@ -12,7 +12,7 @@ Flutify (Pty) Ltd
 Registration Number: 2025/326018/07
 Taxpayer Ref No: 9470850224''';
 
-    return Scaffold(backgroundColor: Colors.indigo.shade100,
+    return Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -60,7 +60,7 @@ Taxpayer Ref No: 9470850224''';
       borderRadius: BorderRadius.circular(8),
     ),
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-    backgroundColor: Colors.indigo.shade200,
+    backgroundColor: Colors.blue.shade200,
     foregroundColor: Colors.black,
   ),
   child: const Text(
