@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'invoice_form.dart';
+import 'first_invoice_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +12,7 @@ Flutify (Pty) Ltd
 Registration Number: 2025/326018/07
 Taxpayer Ref No: 9470850224''';
 
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.indigo.shade100,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -60,7 +60,7 @@ Taxpayer Ref No: 9470850224''';
       borderRadius: BorderRadius.circular(8),
     ),
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-    backgroundColor: Colors.green[50],
+    backgroundColor: Colors.indigo.shade200,
     foregroundColor: Colors.black,
   ),
   child: const Text(
