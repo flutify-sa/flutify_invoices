@@ -1,5 +1,5 @@
+import 'package:flutify_invoice/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'invoice_form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,8 +21,7 @@ class FlutifyInvoiceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp( 
       title: 'Flutify Invoice',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const InvoiceFormScreen(),
+      home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
