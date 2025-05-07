@@ -19,9 +19,9 @@ class FlutifyInvoiceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( 
+    return const MaterialApp( 
       title: 'Flutify Invoice',
-      home: const HomeScreen(),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -94,11 +94,6 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
     _showSnackBar("Invoice saved (not implemented)");
   }
 
-  // Function to share the invoice (not implemented)
-  void _shareInvoice() {
-    _showSnackBar("Invoice shared (not implemented)");
-  }
-
   // Helper method to show a snackbar
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -154,7 +149,7 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                 hintText: "e.g. 1500.00",
                 controller: widget.itemAmountController,
                 keyboardType:
-                    TextInputType.numberWithOptions(decimal: true),
+                    const TextInputType.numberWithOptions(decimal: true),
               ),
               ElevatedButton(
                 onPressed: widget.onAddItem,
@@ -192,7 +187,7 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                 hintText: "e.g. 15",
                 controller: widget.taxController,
                 keyboardType:
-                    TextInputType.numberWithOptions(decimal: true),
+                    const TextInputType.numberWithOptions(decimal: true),
                 onChanged: (_) {
                   // Use a local setState to rebuild this widget when tax changes.
                   setState(() {});
@@ -222,37 +217,19 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                 maxLines: 2,
               ),
               const SizedBox(height: 20),
-              // Save and Share Buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: _saveInvoice,
-                    icon: const Icon(Icons.save),
-                    label: const Text("Save"),
-                    style: ElevatedButton.styleFrom(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
-    ),
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-    backgroundColor: Colors.blue.shade200,
-    foregroundColor: Colors.black,
-  ),
+              // Save Button
+              ElevatedButton.icon(
+                onPressed: _saveInvoice,
+                icon: const Icon(Icons.save),
+                label: const Text("Save"),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  ElevatedButton.icon(
-                    onPressed: _shareInvoice,
-                    icon: const Icon(Icons.share),
-                    label: const Text("Share"),
-                   style: ElevatedButton.styleFrom(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
-    ),
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-    backgroundColor: Colors.blue.shade200,
-    foregroundColor: Colors.black,
-  ),
-                  ),
-                ],
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  backgroundColor: Colors.blue.shade200,
+                  foregroundColor: Colors.black,
+                ),
               ),
             ],
           ),
@@ -261,4 +238,3 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
     );
   }
 }
-

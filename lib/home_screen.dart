@@ -7,7 +7,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Static Flutify details
-    final String flutifyDetails = '''
+    const String flutifyDetails = '''
 Flutify (Pty) Ltd
 Registration Number: 2025/326018/07
 Taxpayer Ref No: 9470850224''';
@@ -21,15 +21,15 @@ Taxpayer Ref No: 9470850224''';
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
-              Text(
+              const Text(
                 'flutify.co.za',
-                style: const TextStyle(fontSize: 32), 
+                style: TextStyle(fontSize: 32), 
                 textAlign: TextAlign.center, 
               ),
               const SizedBox(height: 20),
-  Text(
+  const Text(
                 'Invoice Generator',
-                style: const TextStyle(fontSize: 24), 
+                style: TextStyle(fontSize: 24), 
                 textAlign: TextAlign.center, 
               ),
               const SizedBox(height: 20),
@@ -40,7 +40,7 @@ Taxpayer Ref No: 9470850224''';
               const SizedBox(height: 20),
 
               // Display Flutify details
-              Text(
+              const Text(
                 flutifyDetails,
                 textAlign: TextAlign.center,
               ),
