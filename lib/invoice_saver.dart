@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, unused_import
 
 import 'dart:io';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +59,8 @@ class InvoiceSaver {
                 // Invoice Header
                 pw.Text('Invoice', style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
                 pw.SizedBox(height: 10),
-                pw.Text('Invoice Date: ${invoiceDate.toLocal()}'),
-                pw.Text('Due Date: ${dueDate.toLocal()}'),
+                pw.Text('Invoice Date: ${DateFormat('yyyy-MM-dd').format(invoiceDate)}'),
+                pw.Text('Due Date: ${DateFormat('yyyy-MM-dd').format(dueDate)}'),
                 pw.Text('Tax Rate: $taxPercent%'),
                 pw.SizedBox(height: 10),
 
