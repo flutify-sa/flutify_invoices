@@ -21,6 +21,7 @@ class InvoiceSaver {
     required double total,
     required String customerName,
     required String customerEmail,
+    required String customerMobile,
   }) async {
     try {
       print("Starting the invoice save process...");
@@ -51,6 +52,7 @@ class InvoiceSaver {
                 pw.Text("Bill To:", style: pw.TextStyle(fontSize: 14, fontWeight: pw.FontWeight.bold)),
                 pw.Text(customerName, style: const pw.TextStyle(fontSize: 12)),
                 pw.Text(customerEmail, style: const pw.TextStyle(fontSize: 12)),
+                pw.Text(customerMobile, style: const pw.TextStyle(fontSize: 12)),
                 pw.SizedBox(height: 16),
 
                 // Invoice Header

@@ -66,6 +66,7 @@ class InvoiceDetailsScreen extends StatefulWidget {
   final TextEditingController customerNameController;
   final TextEditingController customerEmailController;
   final TextEditingController customerMobileController;
+  
 
   const InvoiceDetailsScreen({
     super.key,
@@ -108,6 +109,7 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
       total: _total,
       customerName: widget.customerNameController.text,
       customerEmail: widget.customerEmailController.text,
+      customerMobile: widget.customerMobileController.text,
     );
   }
 
