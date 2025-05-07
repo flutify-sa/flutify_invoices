@@ -1,3 +1,4 @@
+import 'package:flutify_invoice/invoice_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'custom_textfield.dart'; // Import the new file
@@ -89,17 +90,20 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
       _subtotal * (double.tryParse(widget.taxController.text) ?? 0) / 100;
   double get _total => _subtotal + _tax;
 
-  // Function to save the invoice (not implemented)
-  void _saveInvoice() {
-    _showSnackBar("Invoice saved (not implemented)");
-  }
+ void _saveInvoice() {
+  InvoiceSaver.saveInvoice(
+    context: context,
+    items: widget.items,
+    invoiceDate: widget.invoiceDate,
+    dueDate: widget.dueDate,
+    taxPercent: widget.taxController.text,
+    notes: widget.notesController.text,
+    subtotal: _subtotal,
+    tax: _tax,
+    total: _total,
+  );
+}
 
-  // Helper method to show a snackbar
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
