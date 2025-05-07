@@ -1,7 +1,7 @@
 import 'package:flutify_invoice/invoice_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'custom_textfield.dart'; // Import the new file
+import 'custom_textfield.dart';
 
 // Helper function for currency formatting
 String formatCurrency(double amount) {
@@ -63,6 +63,9 @@ class InvoiceDetailsScreen extends StatefulWidget {
   final TextEditingController itemDescController;
   final TextEditingController itemAmountController;
   final void Function() onAddItem;
+  final TextEditingController customerNameController;
+  final TextEditingController customerEmailController;
+  final TextEditingController customerMobileController;
 
   const InvoiceDetailsScreen({
     super.key,
@@ -76,6 +79,9 @@ class InvoiceDetailsScreen extends StatefulWidget {
     required this.itemDescController,
     required this.itemAmountController,
     required this.onAddItem,
+    required this.customerNameController,
+    required this.customerEmailController,
+    required this.customerMobileController,
   });
 
   @override
@@ -83,27 +89,27 @@ class InvoiceDetailsScreen extends StatefulWidget {
 }
 
 class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
-  // Getters for calculated values
   double get _subtotal =>
       widget.items.fold(0.0, (sum, item) => sum + item.amount);
   double get _tax =>
       _subtotal * (double.tryParse(widget.taxController.text) ?? 0) / 100;
   double get _total => _subtotal + _tax;
 
- void _saveInvoice() {
-  InvoiceSaver.saveInvoice(
-    context: context,
-    items: widget.items,
-    invoiceDate: widget.invoiceDate,
-    dueDate: widget.dueDate,
-    taxPercent: widget.taxController.text,
-    notes: widget.notesController.text,
-    subtotal: _subtotal,
-    tax: _tax,
-    total: _total,
-  );
-}
-
+  void _saveInvoice() {
+    InvoiceSaver.saveInvoice(
+      context: context,
+      items: widget.items,
+      invoiceDate: widget.invoiceDate,
+      dueDate: widget.dueDate,
+      taxPercent: widget.taxController.text,
+      notes: widget.notesController.text,
+      subtotal: _subtotal,
+      tax: _tax,
+      total: _total,
+      customerName: widget.customerNameController.text,
+      customerEmail: widget.customerEmailController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,9 +120,27 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+           
             children: [
-              // Invoice Details Section
-              const Text("Invoice Details",
+              const Text("Customer Info",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+              CustomTextField(
+                label: "Customer Name",
+                hintText: "e.g. John Doe",
+                controller: widget.customerNameController,
+              ),
+              CustomTextField(
+                label: "Customer Email",
+                hintText: "e.g. john@example.com",
+                controller: widget.customerEmailController,
+              ),
+              CustomTextField(
+                label: "Customer Mobile",
+                hintText: "e.g. 0812345678",
+                controller: widget.customerMobileController,
+              ),
+              const SizedBox(height: 20),
+              const Text("Invoice Dates",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               Row(
                 children: [
@@ -131,15 +155,14 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                   Expanded(
                     child: ListTile(
                       title: const Text("Due Date"),
-                      subtitle:
-                          Text(DateFormat('yyyy-MM-dd').format(widget.dueDate)),
+                      subtitle: Text(
+                          DateFormat('yyyy-MM-dd').format(widget.dueDate)),
                       onTap: () => widget.onPickDate(isDue: true),
                     ),
                   ),
                 ],
               ),
               const Divider(),
-              // Add Item Section
               const Text("Add Item",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               CustomTextField(
@@ -157,18 +180,18 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
               ),
               ElevatedButton(
                 onPressed: widget.onAddItem,
-             style: ElevatedButton.styleFrom(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
-    ),
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-    backgroundColor: Colors.blue.shade200,
-    foregroundColor: Colors.black,
-  ),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  backgroundColor: Colors.blue.shade200,
+                  foregroundColor: Colors.black,
+                ),
                 child: const Text("Add Item"),
               ),
               const SizedBox(height: 10),
-              // Display Items
               if (widget.items.isNotEmpty) ...[
                 const Text("Invoice Items",
                     style:
@@ -185,7 +208,6 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                 ),
               ],
               const SizedBox(height: 16),
-              // Tax and Total Section
               CustomTextField(
                 label: "Tax (%)",
                 hintText: "e.g. 15",
@@ -193,7 +215,6 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 onChanged: (_) {
-                  // Use a local setState to rebuild this widget when tax changes.
                   setState(() {});
                 },
               ),
@@ -212,7 +233,6 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                   ],
                 ),
               ),
-              // Notes Section
               const SizedBox(height: 20),
               CustomTextField(
                 label: "Notes",
@@ -221,7 +241,6 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                 maxLines: 2,
               ),
               const SizedBox(height: 20),
-              // Save Button
               ElevatedButton.icon(
                 onPressed: _saveInvoice,
                 icon: const Icon(Icons.save),
@@ -230,7 +249,8 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   backgroundColor: Colors.blue.shade200,
                   foregroundColor: Colors.black,
                 ),

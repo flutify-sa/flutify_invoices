@@ -45,7 +45,7 @@ class _InvoiceFormScreenState extends State<InvoiceFormScreen> {
         _itemAmountController.clear();
       });
     } else {
-      _showSnackBar("Please enter a valid description and amount."); // Show message
+      _showSnackBar("Please enter a valid description and amount.");
     }
   }
 
@@ -90,6 +90,10 @@ class _InvoiceFormScreenState extends State<InvoiceFormScreen> {
           itemDescController: _itemDescController,
           itemAmountController: _itemAmountController,
           onAddItem: _addItem,
+          // Passing the customer info controllers as arguments
+          customerNameController: _customerNameController,
+          customerEmailController: _customerEmailController,
+          customerMobileController: _customerMobileController,
         ),
       ),
     );
@@ -137,14 +141,15 @@ class _InvoiceFormScreenState extends State<InvoiceFormScreen> {
               keyboardType: TextInputType.emailAddress,
             ),
             ElevatedButton(
-              onPressed: _navigateToInvoiceDetails, style: ElevatedButton.styleFrom(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
-    ),
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-    backgroundColor: Colors.blue.shade200,
-    foregroundColor: Colors.black,
-  ),
+              onPressed: _navigateToInvoiceDetails,
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                backgroundColor: Colors.blue.shade200,
+                foregroundColor: Colors.black,
+              ),
               child: const Text("View Invoice Details"),
             ),
           ],
@@ -153,4 +158,3 @@ class _InvoiceFormScreenState extends State<InvoiceFormScreen> {
     );
   }
 }
-
