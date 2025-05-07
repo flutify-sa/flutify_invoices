@@ -147,7 +147,7 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                 label: "Description",
                 hintText: "e.g. Logo design, Web development...",
                 controller: widget.itemDescController,
-                maxLines: 4,
+                maxLines: 2,
               ),
               CustomTextField(
                 label: "Amount (ZAR)",
@@ -158,10 +158,14 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
               ),
               ElevatedButton(
                 onPressed: widget.onAddItem,
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
+             style: ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+    backgroundColor: Colors.blue.shade200,
+    foregroundColor: Colors.black,
+  ),
                 child: const Text("Add Item"),
               ),
               const SizedBox(height: 10),
@@ -215,7 +219,7 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                 label: "Notes",
                 hintText: "e.g. Thank you for your business!",
                 controller: widget.notesController,
-                maxLines: 4,
+                maxLines: 2,
               ),
               const SizedBox(height: 20),
               // Save and Share Buttons
@@ -227,18 +231,26 @@ class _InvoiceDetailsScreenState extends State<InvoiceDetailsScreen> {
                     icon: const Icon(Icons.save),
                     label: const Text("Save"),
                     style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+    backgroundColor: Colors.blue.shade200,
+    foregroundColor: Colors.black,
+  ),
                   ),
                   ElevatedButton.icon(
                     onPressed: _shareInvoice,
                     icon: const Icon(Icons.share),
                     label: const Text("Share"),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
+                   style: ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+    backgroundColor: Colors.blue.shade200,
+    foregroundColor: Colors.black,
+  ),
                   ),
                 ],
               ),

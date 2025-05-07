@@ -137,7 +137,14 @@ class _InvoiceFormScreenState extends State<InvoiceFormScreen> {
               keyboardType: TextInputType.emailAddress,
             ),
             ElevatedButton(
-              onPressed: _navigateToInvoiceDetails,
+              onPressed: _navigateToInvoiceDetails, style: ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+    backgroundColor: Colors.blue.shade200,
+    foregroundColor: Colors.black,
+  ),
               child: const Text("View Invoice Details"),
             ),
           ],
